@@ -5,7 +5,7 @@
   "author": "Jonas Ulrich <jonas.ulrich@ruhmesmeile.com>",
   "main": "server.js",
   "scripts": {
-    "start": "CRAWL_PAGE=https://tierschutzbund.typo3.ruhmesmeile.review CRAWL_USER=tierschutzbund CRAWL_PASSWORD=betatester node crawl.js"
+    "start": "node crawl.js"
   },
   "dependencies": {
     "crawler": "^1.1.2",
