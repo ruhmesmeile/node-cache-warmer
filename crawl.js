@@ -14,12 +14,15 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
     console.log(error);
   } else {
     var $ = res.$;
-    var relLinkUrl;
-    $(LINKSELECTOR).each(function (index, link) {
-      relLinkUrl = $(link).attr('href').replace(PAGE,"")
+    var linkUrl, relLinkUrl;
 
-      if ((relLinkUrl.indexOf("http") < 0) && !seen.exists(PAGE+relLinkUrl)) {
-        urls.push(PAGE+relLinkUrl);
+    $(LINKSELECTOR).each(function (index, link) {
+      linkUrl = $(link).attr('href');
+      if (linkUrl && linkUrl.length && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1)) {
+        relLinkUrl = linkUrl.replace(PAGE,"")
+        if (!seen.exists(PAGE+relLinkUrl)) {
+          urls.push(PAGE+relLinkUrl);
+        }
       }
     });
 
