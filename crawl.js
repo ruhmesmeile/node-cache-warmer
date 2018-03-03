@@ -2,6 +2,7 @@ const Crawler = require("crawler");
 const Seenreq = require('seenreq');
 
 const PAGE = process.env.CRAWL_PAGE;
+const LINKSELECTOR = process.env.CRAWL_LINKSELECTOR;
 const seen = new Seenreq();
 
 var crawledTotal = 0;
@@ -14,8 +15,9 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
   } else {
     var $ = res.$;
     var relLinkUrl;
-    $('.nav-main a').each(function (index, link) {
+    $(LINKSELECTOR).each(function (index, link) {
       relLinkUrl = $(link).attr('href').replace(PAGE,"")
+
       if ((relLinkUrl.indexOf("http") < 0) && !seen.exists(PAGE+relLinkUrl)) {
         urls.push(PAGE+relLinkUrl);
       }
