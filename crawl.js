@@ -16,20 +16,27 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
     var $ = res.$;
     var linkUrl, relLinkUrl;
 
-    $(LINKSELECTOR).each(function (index, link) {
-      linkUrl = $(link).attr('href');
-      if (linkUrl && linkUrl.length && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1) && linkUrl.indexOf("javascript:") < 0) {
-        relLinkUrl = linkUrl.replace(PAGE,"")
-        if (!seen.exists(PAGE+relLinkUrl)) {
-          urls.push(PAGE+relLinkUrl);
+    if (typeof $ === "function") {
+      $(LINKSELECTOR).each(function (index, link) {
+        linkUrl = $(link).attr('href');
+        if (linkUrl
+          && linkUrl.length
+          && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1)
+          && linkUrl.indexOf("javascript:") < 0
+          && linkUrl.indexOf("mailto:") < 0
+          && linkUrl.indexOf("fileadmin") < 0) {
+          relLinkUrl = linkUrl.replace(PAGE,"")
+          if (!seen.exists(PAGE+relLinkUrl)) {
+            urls.push(PAGE+relLinkUrl);
+          }
         }
-      }
-    });
+      });
+    }
 
     console.log(`[RM Cache Warmer] Scraped: ${res.options.uri.replace(PAGE,"")} - ${$("title").text()} (${urls.length} urls queued, queue size ${c.queueSize}, total crawled ${crawledTotal++})`);
   }
 
-  c.queue(urls);
+  if (urls.length) c.queue(urls);
   done();
 };
 
