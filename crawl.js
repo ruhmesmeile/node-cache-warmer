@@ -18,7 +18,7 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
 
     $(LINKSELECTOR).each(function (index, link) {
       linkUrl = $(link).attr('href');
-      if (linkUrl && linkUrl.length && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1)) {
+      if (linkUrl && linkUrl.length && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1) && linkUrl.indexOf("javascript:") < 0) {
         relLinkUrl = linkUrl.replace(PAGE,"")
         if (!seen.exists(PAGE+relLinkUrl)) {
           urls.push(PAGE+relLinkUrl);
