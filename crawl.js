@@ -28,6 +28,7 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
           && linkUrl.indexOf("?") < 0
           && linkUrl.indexOf("fileadmin") < 0) {
           relLinkUrl = linkUrl.replace(PAGE,"")
+          relLinkUrl = relLinkUrl.substring(0, relLinkUrl.indexOf('#'));
           if (!seen.exists(PAGE+relLinkUrl)) {
             urls.push(PAGE+relLinkUrl);
           }
