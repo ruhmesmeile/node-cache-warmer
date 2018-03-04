@@ -25,6 +25,9 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
           && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1)
           && linkUrl.indexOf("javascript:") < 0
           && linkUrl.indexOf("mailto:") < 0
+          && linkUrl.indexOf("file:") < 0
+          && linkUrl.indexOf("tel:") < 0
+          && linkUrl.indexOf("fax:") < 0
           && linkUrl.indexOf("?") < 0
           && linkUrl.indexOf("fileadmin") < 0) {
           relLinkUrl = linkUrl.replace(PAGE,"")
