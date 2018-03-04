@@ -65,3 +65,7 @@ const options = {
 console.log(`[RM Cache Warmer] Scraping: ${PAGE}`);
 const c = new Crawler(options);
 c.queue(PAGE);
+
+c.on('drain',function (){
+  process.exit(0);
+});
