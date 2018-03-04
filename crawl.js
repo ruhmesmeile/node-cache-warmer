@@ -4,6 +4,7 @@ const Seenreq = require('seenreq');
 const PAGE = process.env.CRAWL_PAGE;
 const LINKSELECTOR = process.env.CRAWL_LINKSELECTOR;
 const seen = new Seenreq();
+const ignires = process.env.CRAWL_IGNORES;
 
 var crawledTotal = 0;
 
@@ -24,6 +25,7 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
           && (linkUrl.indexOf("http") < 0 || linkUrl.indexOf(PAGE) > -1)
           && linkUrl.indexOf("javascript:") < 0
           && linkUrl.indexOf("mailto:") < 0
+          && linkUrl.indexOf("?") < 0
           && linkUrl.indexOf("fileadmin") < 0) {
           relLinkUrl = linkUrl.replace(PAGE,"")
           if (!seen.exists(PAGE+relLinkUrl)) {
