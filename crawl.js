@@ -4,7 +4,6 @@ const Seenreq = require('seenreq');
 const PAGE = process.env.CRAWL_PAGE;
 const LINKSELECTOR = process.env.CRAWL_LINKSELECTOR;
 const seen = new Seenreq();
-const ignires = process.env.CRAWL_IGNORES;
 
 var crawledTotal = 0;
 
