@@ -29,7 +29,8 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
           && linkUrl.indexOf("tel:") < 0
           && linkUrl.indexOf("fax:") < 0
           && linkUrl.indexOf("?") < 0
-          && linkUrl.indexOf("fileadmin") < 0) {
+          && linkUrl.indexOf("typo3/") < 0
+          && linkUrl.indexOf("fileadmin/") < 0) {
           relLinkUrl = linkUrl.replace(PAGE,"")
           relLinkUrl = relLinkUrl.substring(0, relLinkUrl.indexOf('#'));
           if(!relLinkUrl.charAt(0)=="/") relLinkUrl = "/"+relLinkUrl
