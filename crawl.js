@@ -41,7 +41,7 @@ var handleCrawlResult = function handleCrawlResult (error, res, done) {
             relLinkUrl = "/"+relLinkUrl;
           }
 
-          if (!seen.exists(PAGE+relLinkUrl)) {
+          if (relLinkUrl.length > 1 && !seen.exists(PAGE+relLinkUrl)) {
             urls.push(PAGE+relLinkUrl);
           }
         }
@@ -65,7 +65,7 @@ const options = {
   callback : handleCrawlResult
 };
 
-console.log(`[RM Cache Warmer] Scraping: ${PAGE}`);
+console.log(`[RM Cache Warmer] Scraping: ${PAGE}/`);
 const c = new Crawler(options);
 c.queue(PAGE+"/");
 
