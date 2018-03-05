@@ -59,9 +59,8 @@ const options = {
     user: process.env.CRAWL_USER,
     pass: process.env.CRAWL_PASSWORD
   },
-  maxConnections : 10,
   rateLimit: 300,
-  callback : handleCrawlResult
+  callback: handleCrawlResult
 };
 
 console.log(`[RM Cache Warmer] Scraping: ${PAGE}/`);
